@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# created by mzq
+
+while getopts f: opt; do
+	case $opt in
+		f) file=$OPTARG ;;
+	esac
+done
+
+if [ -z "$file" ]; then
+	apm list -bi | sed 's/@.*$//g'
+else
+	apm install --packages-file "$file"
+fi
